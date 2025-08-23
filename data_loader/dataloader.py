@@ -28,8 +28,8 @@ class StrandsData(dict):
         self.root_normal = npz_data["root_normal"] #nr_strands x 3
         self.root_uv = npz_data["root_uv"] #nr_strands x 2
         self.root_position = npz_data["positions"][:,0,:] #nr_strands x 3
-        # print("init positiosis ", npz_data["positions"].shape)
-        # print("inti root position",self.root_position.shape)
+        print("init positiosis ", npz_data["positions"].shape)
+        print("inti root position",self.root_position.shape)
        
         #solving a bug with the root_uvs, when the hair is mirrored by the blender pipeline the uv's were not mirrored also so we need to do it here
         if meta_data["mirror_hair"]:

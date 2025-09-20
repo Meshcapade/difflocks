@@ -20,9 +20,9 @@ from . import flags, flops
 from .. import layers
 from .axial_rope import make_axial_pos
 
-# from modules.networks import LinearWN_v2, Conv1dWN_v2, BlockSiren, kaiming_init
-from modules.edm2_modules import MPFourier
-# from modules.edm2_modules import  mp_silu
+# from difflocks_modules.networks import LinearWN_v2, Conv1dWN_v2, BlockSiren, kaiming_init
+from difflocks_modules.edm2_modules import MPFourier
+# from difflocks_modules.edm2_modules import  mp_silu
 
 
 

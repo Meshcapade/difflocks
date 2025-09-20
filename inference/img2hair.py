@@ -21,15 +21,15 @@ import numpy as np
 import time
 import numpy as np
 from models.strand_codec import StrandCodec
-from utils.strand_util import sample_strands_from_scalp_with_density
-from utils.diffusion_utils import sample_images_cfg
+from difflocks_utils.strand_util import sample_strands_from_scalp_with_density
+from difflocks_utils.diffusion_utils import sample_images_cfg
 
 import torch
 import torch._dynamo
 import torchvision
 import sys
 import os
-from utils.vis_util import img_2_pca
+from difflocks_utils.vis_util import img_2_pca
 import torchvision.transforms as T
 import k_diffusion as K
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,8 +41,6 @@ FaceLandmarkerOptions = mp.tasks.vision.FaceLandmarkerOptions
 FaceLandmarkerResult = mp.tasks.vision.FaceLandmarkerResult
 
 torch.autograd.set_grad_enabled(False)
-
-
 
 class Mediapipe():
     def __init__(self, mode):
@@ -195,7 +193,14 @@ def crop_face(image, face_landmarks, output_size, crop_size_multiplier=2.8):
         value=(0, 0, 0)  # Black padding
     )
 
-    padded_image = cv2.resize(padded_image, (output_size, output_size))
+    # Decide interpolation method based on whether we’re upscaling or downscaling
+    h, w = padded_image.shape[:2]
+    if h > output_size or w > output_size:
+        interpolation = cv2.INTER_AREA  # downscaling
+    else:
+        interpolation = cv2.INTER_CUBIC  # upscaling
+
+    padded_image = cv2.resize(padded_image, (output_size, output_size), interpolation=interpolation)
 
     return padded_image
 
@@ -337,7 +342,7 @@ class DiffLocksInference():
         # density_map[density_map>0.02]+=1.0
         
 
-        strand_points_world, strand_points_tbn = sample_strands_from_scalp_with_density(scalp_texture, density_map, self.strand_codec, normalization_dict=self.normalization_dict, scalp_mesh_data=self.scalp_mesh_data, tbn_space_to_world_func=tbn_space_to_world, nr_chunks=self.nr_chunks_decode_strands, upsample_multiplier=3)
+        strand_points_world, strand_points_tbn, root_uv01 = sample_strands_from_scalp_with_density(scalp_texture, density_map, self.strand_codec, normalization_dict=self.normalization_dict, scalp_mesh_data=self.scalp_mesh_data, tbn_space_to_world_func=tbn_space_to_world, nr_chunks=self.nr_chunks_decode_strands, upsample_multiplier=3, return_uvs=True)
 
 
         #get also material
@@ -369,6 +374,10 @@ class DiffLocksInference():
         if out_path:
             npz_out_path=os.path.join(out_path, "difflocks_output_strands.npz")
             np.savez(npz_out_path, positions=strand_points_world.cpu().numpy())
+
+        if out_path:
+            npz_roots_uv01_path = os.path.join(out_path, "roots_uv01.npz")
+            np.savez(npz_roots_uv01_path, uv_coords=root_uv01.cpu().numpy())
 
         #save also img
         if out_path:

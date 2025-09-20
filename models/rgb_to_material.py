@@ -1,4 +1,4 @@
-from modules.networks import kaiming_init
+from difflocks_modules.networks import kaiming_init
 import torch
 from torch import nn
 import os

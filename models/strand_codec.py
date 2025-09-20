@@ -3,8 +3,8 @@ import os
 import torch
 import torch.nn as nn
 
-from modules.networks import LinearDummy, LinearWN_v2, Conv1dWN_v2, BlockSiren, kaiming_init
-from utils.general_util import batched_index_select
+from difflocks_modules.networks import LinearDummy, LinearWN_v2, Conv1dWN_v2, BlockSiren, kaiming_init
+from difflocks_utils.general_util import batched_index_select
 import json
 
 

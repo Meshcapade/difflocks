@@ -6,7 +6,7 @@
 # Set paths
 IMG_DIR="/localhome/aha220/Hairdar/assets/test_data/img"
 OUTPUT_DIR="/localhome/aha220/Hairdar/modules/difflocks/outputs_inference"
-RESULTS_BASE_DIR="/localhome/aha220/Hairdar/assets/results/Difflocks_new/hair3D"
+RESULTS_BASE_DIR="/localhome/aha220/Hairdar/assets/results/Difflocks/hair3D"
 INFERENCE_SCRIPT="./inference_difflocks.py"
 
 # Check if the image directory exists

@@ -13,10 +13,10 @@ sys.path.append(
 from models.strand_codec import StrandCodec
 from torch.utils.data import DataLoader
 from models.strand_codec import normalize_gt_data
-from utils.strand_util import compute_dirs
-from utils.vis_util import img_2_pca
-import utils.resize_right.resize_right as resize_right
-import utils.resize_right.interp_methods as interp_methods
+from difflocks_utils.strand_util import compute_dirs
+from difflocks_utils.vis_util import img_2_pca
+import difflocks_utils.resize_right.resize_right as resize_right
+import difflocks_utils.resize_right.interp_methods as interp_methods
 from tqdm import tqdm
 import numpy as np
 from data_loader.dataloader import DiffLocksDataset

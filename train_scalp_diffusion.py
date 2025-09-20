@@ -18,7 +18,7 @@ import json
 from pathlib import Path
 import numpy as np
 from scipy.optimize import linear_sum_assignment
-from utils.general_util import summary
+from difflocks_utils.general_util import summary
 
 import accelerate
 import safetensors.torch as safetorch
@@ -32,7 +32,7 @@ from torchvision import datasets, transforms, utils
 from tqdm.auto import tqdm
 import sys
 import os
-from utils.vis_util import img_2_pca
+from difflocks_utils.vis_util import img_2_pca
 import random
 from data_loader.dataloader import DiffLocksDataset
 

@@ -21,15 +21,15 @@ import numpy as np
 import time
 import numpy as np
 from models.strand_codec import StrandCodec
-from difflocks_utils.strand_util import sample_strands_from_scalp_with_density
-from difflocks_utils.diffusion_utils import sample_images_cfg
+from modules.difflocks.difflocks_utils.strand_util import sample_strands_from_scalp_with_density
+from modules.difflocks.difflocks_utils.diffusion_utils import sample_images_cfg
 
 import torch
 import torch._dynamo
 import torchvision
 import sys
 import os
-from difflocks_utils.vis_util import img_2_pca
+from modules.difflocks.difflocks_utils.vis_util import img_2_pca
 import torchvision.transforms as T
 import k_diffusion as K
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))

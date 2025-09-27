@@ -11,10 +11,10 @@ from models.strand_codec import StrandCodec
 import numpy as np
 import random
 from losses.losses import *
-from difflocks_utils.general_util import summary
+from modules.difflocks.difflocks_utils.general_util import summary
 from schedulers.pytorch_warmup.untuned import UntunedLinearWarmup
-from difflocks_utils.strand_util import compute_dirs
-from difflocks_utils.general_util import random_quaternions, quaternion_to_matrix
+from modules.difflocks.difflocks_utils.strand_util import compute_dirs
+from modules.difflocks.difflocks_utils.general_util import random_quaternions, quaternion_to_matrix
 from losses.loss import StrandVAELoss
 from tqdm import tqdm
 from data_loader.dataloader import DiffLocksDataset

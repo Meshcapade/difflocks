@@ -2,10 +2,10 @@ import struct
 import numpy as np
 # import splines
 import torch
-from difflocks_utils.general_util import tridiagonal_solve
+from modules.difflocks.difflocks_utils.general_util import tridiagonal_solve
 import trimesh
 from scipy.interpolate import splprep, splev
-from difflocks_utils.general_util import get_window
+from modules.difflocks.difflocks_utils.general_util import get_window
 
 def load_strand(file, return_strands=False,interp=False,num_interp=100):
     with open(file, mode='rb')as f:

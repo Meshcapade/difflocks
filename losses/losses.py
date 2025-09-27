@@ -3,8 +3,8 @@ import torch
 import numpy as np
 from typing import List, Any
 from losses.loss_utils import apply_reduction
-from difflocks_utils.general_util import get_window
-from difflocks_utils.strand_util import compute_dirs, compute_curv
+from modules.difflocks.difflocks_utils.general_util import get_window
+from modules.difflocks.difflocks_utils.strand_util import compute_dirs, compute_curv
 
 
 def compute_loss_l2(gt_hair_strands, pred_hair_strands):

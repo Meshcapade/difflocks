@@ -14,7 +14,7 @@
 import argparse
 import torch
 from models.strand_codec import StrandCodec
-from difflocks_utils.strand_util import compute_dirs
+from modules.difflocks.difflocks_utils.strand_util import compute_dirs
 from losses.loss import StrandVAELoss
 import json
 from data_loader.dataloader import DiffLocksDataset

@@ -159,7 +159,7 @@ def main():
     # else:
     #     path_in_blend=os.path.join(path_cur_script,"./assets/blender_vis_base_v24.blend")
     # path_in_blend=os.path.join(path_cur_script,"./assets/blender_vis_base_v27_blender36.blend")
-    path_in_blend=os.path.join(path_cur_script,"./assets/blender_vis_base_v26_with_shrinkwrap_full_base.blend")
+    path_in_blend= "/localhome/aha220/Hairdar/assets/body_models/blender_scenes/smplx/vis_base_v26_shrinkwrap.blend"
     bpy.ops.wm.open_mainfile(filepath=path_in_blend)
 
 
@@ -193,17 +193,9 @@ def main():
 
     # Assign the flat array directly
     curves_data.points.foreach_set("position", flat_points.flatten())
-          
-
 
     if not args.shrinkwrap:
         bpy.ops.object.modifier_remove(modifier="Shrinkwrap Hair Curves")
-
-   
-
-
-
-
 
     # Update the viewport to reflect changes
     obj.data.update_tag()
@@ -228,4 +220,3 @@ def main():
    
 if __name__ == '__main__':
     main() 
-
